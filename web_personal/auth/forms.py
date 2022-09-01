@@ -10,16 +10,16 @@ from wtforms.validators import DataRequired,Email
     ############## Falta corregir email validator############
 
 class LoginForm(FlaskForm):
-    email = EmailField ('correo', validators=[DataRequired()])
+    email = EmailField ('correo', validators=[DataRequired(), Email()])
     password = PasswordField ('Password', validators=[DataRequired()])
     submit = SubmitField ('Ingresar')
 
 
 class RegisterForm(FlaskForm):
-    name = StringField('Nombre')
-    last_name = StringField('Apellidos')
-    email = EmailField('correo')
-    password = PasswordField('Contraseña')
+    name = StringField('Nombre', validators=[DataRequired()])
+    last_name = StringField('Apellidos', validators=[DataRequired()])
+    email = EmailField('correo', validators=[DataRequired(),Email()])
+    password = PasswordField('Contraseña', validators=[DataRequired()])
     phone = IntegerField('Telefono')
     is_married = RadioField('Estado Civil', choices=[('True', 'Casado'),('False','Soltero')])
     gender = SelectField('Genero', choices=[('male','Masculino'), ('female','Femenino'), ('other','Otro')])

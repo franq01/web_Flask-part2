@@ -14,13 +14,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
 app.config['ENV']= 'developmen'
 
-#@app.route('/usuarios')
-# def usuarios():
-    #connection = get_conection()
-    #with connection.cursor() as cursor:
-        #cursor.execute('SELECT * FROM users')
-        #usuarios = cursor.fetchall()
-        #return str (usuarios)
+
 
 ################ Apss #################
 app.register_blueprint(home_blueprint)
