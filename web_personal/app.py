@@ -3,7 +3,7 @@
 import email
 from flask import Flask, redirect, render_template, request, url_for
 from  flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, EmailField
+from wtforms import StringField, PasswordField, SubmitField, EmailField, IntegerField, RadioField,SelectField
 from wtforms.validators import DataRequired,Email
 
 
@@ -41,6 +41,17 @@ class LoginForm(FlaskForm):
     submit = SubmitField ('Ingresar')
 
 
+class RegisterForm(FlaskForm):
+    name = StringField('Nombre')
+    last_name = StringField('Apellidos')
+    email = EmailField('correo')
+    password = PasswordField('Contraseña')
+    phone = IntegerField('Telefono')
+    is_married = RadioField('Estado Civil', choices=[('True', 'Casado'),('False','Soltero')])
+    gender = SelectField('Genero', choices=[('male','Masculino'), ('female','Femenino'), ('other','Otro')])
+    submit = SubmitField('Registrar')
+
+
     ###### rutas de login ####
 @app.route('/auth/login', methods=['GET','POST'])
 def login ():
@@ -56,21 +67,12 @@ def login ():
 
 @app.route('/auth/registrer')
 def register():
-     return render_template('auth/registrer.html')
+    form = RegisterForm()
+    return render_template('auth/registrer.html', form=form)
 
 
-############ aqui tengo el er
-@app.route('/welcome', methods=['GET' , 'POST'])
 
-def welcome(form):
 
-    if form.validate_on_submit():
-       email = form.email.data
-       password = form.password.data
-      
-
-       return render_template('admin/index.html', email=email )
-    return redirect(url_for('login'))
 
 
 @app.errorhandler(404)
