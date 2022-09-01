@@ -5,30 +5,13 @@ from flask import Flask, redirect, render_template, request, url_for
 from  flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, EmailField, IntegerField, RadioField,SelectField
 from wtforms.validators import DataRequired,Email
+from home.views import home_blueprint
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
 
 
-##### rutas public #######
-
-@app.route('/')
-def index():
-    return render_template('public/index.html')
-
-@app.route('/about')
-def about():
-    return render_template ('public/about.html')
-
-@app.route('/contact')
-def contact():
-    return render_template ('public/contact.html')
-
-
-@app.route('/portfolio')
-def portfolio():
-    return render_template ('public/portfolio.html')
 
 
     #################### Formularios de WTforms  #########################
@@ -77,7 +60,11 @@ def register():
 
 @app.errorhandler(404)
 def page_error_not_found(e):
-    return render_template('error/404.html')
+    return render_template('error/404.html'), 404
+
+
+################ Apss #################
+app.register_blueprint(home_blueprint)
 
 
 
