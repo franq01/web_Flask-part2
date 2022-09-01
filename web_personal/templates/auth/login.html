@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block header_title %}Authentication{% endblock %}
+{% block header_sub %}Login{% endblock %}
+
+
+{% block content%}
+<div class"container">
+    <h2> Login form</h2>
+    <form class="mt-3" action="{{ url_for('welcome') }}" method="post">
+      {{ form.hidden_tag() }}
+      <!--username -->
+        <div class="form-group">
+          {{ form.username.label}}
+          {{ form.username(class="form-control")}}
+         
+         
+         
+        </div>
+        
+
+
+        <!--password-->
+        <div class="form-group">
+          {{ form.password.label }}
+        {{ form.password(class="form-control") }}
+          
+          
+        </div>
+        
+        <!--submit-->
+       
+        
+        {{ form.submit(class="btn btn-primary") }}
+
+        <a href="{{url_for ('register')}}" class='btn btn-secondary' >Registarse</a>
+      </form>
+
+
+{%endblock%}
