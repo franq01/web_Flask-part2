@@ -3,8 +3,8 @@ import pymysql
 def get_conection():
     connection = pymysql.Connect(host='localhost',
                                        user='root',
-                                       password='example',
-                                       db='platzi_blog',
+                                       
+                                       db='web_personal',
                                        
                                        cursorclass=pymysql.cursors.DictCursor)
     return connection

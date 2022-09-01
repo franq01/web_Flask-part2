@@ -7,20 +7,20 @@ from home.views import home_blueprint
 from auth.views import auth_blueprint
 from error_pages.handlers import error_pages
 
-from db.db_conection import get_connection
+from db.db_conection import get_conection
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
 app.config['ENV']= 'developmen'
 
-@app.route('/usuarios')
-def usuarios():
-    connection = get_connection()
-    with connection.cursor() as cursor:
-        cursor.execute('SELECT * FROM usuarios')
-        usuarios = cursor.fetchall()
-        return str (usuarios)
+#@app.route('/usuarios')
+# def usuarios():
+    #connection = get_conection()
+    #with connection.cursor() as cursor:
+        #cursor.execute('SELECT * FROM users')
+        #usuarios = cursor.fetchall()
+        #return str (usuarios)
 
 ################ Apss #################
 app.register_blueprint(home_blueprint)

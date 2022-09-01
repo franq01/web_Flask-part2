@@ -1,6 +1,8 @@
 
 ########### Import flask y python###############
 from flask import render_template, Blueprint
+
+from db.db_conection import get_conection
 ########### Iports WTF ##############3
 from .forms import LoginForm, RegisterForm
 
@@ -17,6 +19,8 @@ def login ():
     if form.validate_on_submit():
        email = form.email.data
        password = form.password.data
+
+       ####### TODO: consulta a la base de datos######
       
 
        return render_template('admin/index.html', email=email )
@@ -26,4 +30,10 @@ def login ():
 @auth_blueprint.route('/registrer')
 def register():
     form = RegisterForm()
+
+
+    ################### TODO: validar usuario ###########
+
+    
+
     return render_template('auth/registrer.html', form=form)
